@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8'>
+  <title>API Update</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css"
+    integrity="sha512-EZLkOqwILORob+p0BXZc+Vm3RgJBOe1Iq/0fiI7r/wJgzOFZMlsqTa29UEl6v6U6gsV4uIpsNZoV32YZqrCRCQ=="
+    crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container">
+    <div style="margin-top:100px;"></div>
+    <div>
+      <h1>Welcome to the News API Tester</h1>
+    </div>
+    
+    <input type=text id="newsTopic" value="Telsa">
+    
+    <div><button class="button-primary" onclick="getNews()">Get the News</button></div>
+    <div id="newsOut">News result here</div>
+  </div>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/axios@0.20.0/dist/axios.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"></script>
+  <script>
+
+    let root = "http://localhost:3000";
+
+    
+
+    function getNews() {
+      let newsTopic = $("#newsTopic").val();
+      axios.get(root + "/api/news/" + newsTopic)
+        .then(result => {
+          $("#newsOut").text(JSON.stringify(result.data).replace("\n", "<br>"));
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    }
+  </script>
+
+</body>
+
+</html>
