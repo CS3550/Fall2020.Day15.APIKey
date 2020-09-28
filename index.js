@@ -10,9 +10,8 @@ let apiKey = process.env.API_KEY;
 
 app.get("/api/news/:newsTopic", (req, res)=>{
   let newsTopic = req.params.newsTopic
-  let query = `http://newsapi.org/v2/everything?q=${newsTopic}&from=2020-08-25&sortBy=publishedAt&apiKey=${apiKey}`;
-  console.log(query);
-  axios.get(query)
+  let query = `https://newsapi.org/v2/everything?q=${newsTopic}&sortBy=publishedAt&apiKey=${apiKey}`;
+  axios.getHi(query)
   .then(result=>{
     console.log(result.data);
     res.send(result.data);

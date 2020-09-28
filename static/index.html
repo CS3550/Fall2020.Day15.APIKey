@@ -39,7 +39,12 @@
       let newsTopic = $("#newsTopic").val();
       axios.get(root + "/api/news/" + newsTopic)
         .then(result => {
-          $("#newsOut").text(JSON.stringify(result.data).replace("\n", "<br>"));
+          $("#newsOut").text("Hi there");
+          $("#newsOut").empty();
+          let articles = result.data.articles.map(i=>{return {title:i.title,content:i.content,url:i.url}});
+          articles.forEach(x=>{
+            $("#newsOut").append(`<div><a href='${x.url}'>${x.title}</a> ${x.content}</div>`)
+          })
         })
         .catch(err => {
           console.log(err);
